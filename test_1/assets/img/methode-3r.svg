@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" width="560" height="200" role="img" aria-label="Schéma en trois étapes : ralentir, rechercher, recouper">
+  <rect width="560" height="200" fill="#fbf9f4"/>
+  <g stroke="#cfc7b6" stroke-width="1.4" stroke-dasharray="6 5">
+    <path d="M150 100h60M350 100h60"/>
+  </g>
+
+  <g transform="translate(40 40)">
+    <circle cx="55" cy="60" r="52" fill="#ffffff" stroke="#e3ddd0" stroke-width="1.4"/>
+    <g stroke="#0d5b4f" stroke-width="2.6" fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M40 36h30M40 84h30"/>
+      <path d="M42 36c0 14 13 18 13 24s-13 10-13 24M68 36c0 14-13 18-13 24s13 10 13 24"/>
+    </g>
+    <path d="M47 78c3-5 13-5 16 0z" fill="#f6e3a8"/>
+    <text x="55" y="126" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#16181c">Ralentir</text>
+  </g>
+
+  <g transform="translate(225 40)">
+    <circle cx="55" cy="60" r="52" fill="#ffffff" stroke="#e3ddd0" stroke-width="1.4"/>
+    <g fill="none" stroke="#0d5b4f" stroke-width="2.4" stroke-linecap="round">
+      <rect x="34" y="32" width="38" height="48" rx="4"/>
+      <path d="M42 44h20M42 53h22M42 62h12"/>
+      <circle cx="66" cy="70" r="13" fill="#ffffff"/>
+      <path d="M76 80l8 8"/>
+    </g>
+    <text x="55" y="126" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#16181c">Rechercher</text>
+  </g>
+
+  <g transform="translate(410 40)">
+    <circle cx="55" cy="60" r="52" fill="#ffffff" stroke="#e3ddd0" stroke-width="1.4"/>
+    <g fill="none" stroke="#0d5b4f" stroke-width="2.4" stroke-linecap="round">
+      <circle cx="42" cy="48" r="11"/>
+      <circle cx="68" cy="48" r="11"/>
+      <circle cx="55" cy="72" r="11"/>
+    </g>
+    <path d="M55 55l0 4M48 58l-3 3M62 58l3 3" stroke="#8a3d12" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <text x="55" y="126" text-anchor="middle" font-family="-apple-system, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#16181c">Recouper</text>
+  </g>
+</svg>

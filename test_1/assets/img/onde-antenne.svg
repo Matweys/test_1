@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" role="img" aria-label="Un pylône de diffusion émet une onde qui se transforme en messages répétés">
+  <rect width="480" height="360" fill="#fbf9f4"/>
+  <g fill="none" stroke="#cfc7b6" stroke-width="1">
+    <path d="M0 300h480M0 250h480M0 200h480M0 150h480M0 100h480M0 50h480" opacity=".35"/>
+  </g>
+
+  <g fill="none" stroke="#0d5b4f" stroke-linecap="round">
+    <path d="M150 148a70 70 0 0 1 0 64" stroke-width="2" opacity=".85"/>
+    <path d="M132 132a104 104 0 0 1 0 96" stroke-width="1.8" opacity=".55"/>
+    <path d="M114 116a138 138 0 0 1 0 128" stroke-width="1.6" opacity=".32"/>
+    <path d="M186 148a70 70 0 0 0 0 64" stroke-width="2" opacity=".85"/>
+    <path d="M204 132a104 104 0 0 0 0 96" stroke-width="1.8" opacity=".55"/>
+    <path d="M222 116a138 138 0 0 0 0 128" stroke-width="1.6" opacity=".32"/>
+  </g>
+
+  <g stroke="#16181c" stroke-width="2.4" fill="none" stroke-linejoin="round">
+    <path d="M168 96l-30 190M168 96l30 190"/>
+    <path d="M147 286h42"/>
+    <path d="M153.6 244h28.8M157.5 200h21M161.4 156h13.2"/>
+    <path d="M153.6 244l28.8-44M182.4 244l-28.8-44M157.5 200l21-44M178.5 200l-21-44"/>
+  </g>
+  <circle cx="168" cy="88" r="7" fill="#0d5b4f"/>
+
+  <g fill="#ffffff" stroke="#cfc7b6" stroke-width="1.6">
+    <rect x="272" y="72" width="168" height="52" rx="8"/>
+    <rect x="288" y="150" width="152" height="46" rx="8"/>
+    <rect x="272" y="222" width="168" height="46" rx="8"/>
+  </g>
+  <g fill="#e3ddd0">
+    <rect x="288" y="88" width="112" height="7" rx="3.5"/>
+    <rect x="288" y="102" width="76" height="7" rx="3.5"/>
+    <rect x="304" y="164" width="96" height="7" rx="3.5"/>
+    <rect x="304" y="178" width="60" height="7" rx="3.5"/>
+    <rect x="288" y="236" width="120" height="7" rx="3.5"/>
+    <rect x="288" y="250" width="70" height="7" rx="3.5"/>
+  </g>
+  <g fill="#f6e3a8">
+    <rect x="288" y="88" width="44" height="7" rx="3.5"/>
+    <rect x="304" y="164" width="34" height="7" rx="3.5"/>
+    <rect x="288" y="236" width="52" height="7" rx="3.5"/>
+  </g>
+
+  <g stroke="#0d5b4f" stroke-width="3" fill="none" stroke-linecap="round">
+    <circle cx="252" cy="300" r="26" fill="#ffffff"/>
+    <path d="M271 319l19 19"/>
+  </g>
+  <path d="M240 300h24M240 308h14" stroke="#0d5b4f" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+</svg>
