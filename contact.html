@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Clouds Taking Shape ApS</title>
+  <meta name="description" content="Contacter Clouds Taking Shape ApS pour une question sur le site ou sur vos données.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark">C</span> Clouds Taking Shape</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">Menu</button>
+      <nav class="nav" aria-label="Navigation">
+        <a href="index.html">Accueil</a>
+        <a href="declaration.html">Déclaration</a>
+        <a href="contact.html">Contact</a>
+        <a href="mentions-legales.html">Mentions</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="page-hero wrap wrap--narrow">
+      <p class="kicker">Contact</p>
+      <h1 class="prose" style="font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.5rem)">Écrire à l'équipe</h1>
+      <p>Une question sur le quiz, une demande liée à vos données, ou un signalement : utilisez le formulaire ou l'e-mail direct.</p>
+    </section>
+
+    <section class="section" style="padding-top:1rem">
+      <div class="wrap wrap--narrow">
+        <p>
+          <strong data-cfg="company.name">Clouds Taking Shape ApS</strong><br>
+          <span data-cfg="company.address">Nydamsvej 17, 8362 Hørning, Denmark</span><br>
+          E-mail :
+          <a href="mailto:helle@cloudstakingshape.com" data-cfg="company.email" data-cfg-type="href">helle@cloudstakingshape.com</a><br>
+          Téléphone :
+          <a href="tel:+451025888908" data-cfg="company.phone" data-cfg-type="href">+45 10 25 88 89 08</a>
+        </p>
+
+        <form class="form" id="contact-form" novalidate>
+          <label>Nom
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>E-mail
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>Message
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+          <p style="font-size:0.9rem;color:var(--muted);font-weight:400">
+            Ce formulaire n'envoie rien automatiquement depuis le navigateur. Pour une réponse, utilisez aussi l'adresse e-mail ci-dessus. Aucune donnée n'est stockée sur nos serveurs via ce formulaire local.
+          </p>
+          <button class="btn btn--solid" type="submit">Préparer mon message</button>
+        </form>
+        <p class="form-note" id="contact-thanks" hidden>
+          Merci. Ouvrez votre messagerie et envoyez votre texte à
+          <span data-cfg="company.email">helle@cloudstakingshape.com</span>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom" style="border:0;margin:0;padding-top:0">
+      <span>© <span id="current-year">2026</span> <span data-cfg="company.name">Clouds Taking Shape ApS</span></span>
+      <span><a href="politique-confidentialite.html">Confidentialité</a> · <a href="index.html">Accueil</a></span>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

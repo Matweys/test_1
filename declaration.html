@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La déclaration d'aujourd'hui — quiz de lecture | Clouds Taking Shape</title>
+  <meta name="description" content="Quiz léger : comment réagissez-vous quand on dit que « tout le monde a été choqué par la déclaration d'aujourd'hui » ? Divertissement, pas actualité.">
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="theme-day">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark">C</span>
+        Clouds Taking Shape
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">Menu</button>
+      <nav class="nav" aria-label="Navigation">
+        <a href="#quiz">Quiz</a>
+        <a href="#profils">Profils</a>
+        <a href="index.html">Autre quiz</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div>
+          <p class="hero__eyebrow"><i aria-hidden="true"></i> Lecture critique · France</p>
+          <h1>Tout le monde a été choqué par la <em>déclaration d'aujourd'hui</em>&nbsp;?</h1>
+          <p class="hero__text">
+            Cette page n'invente pas la déclaration. Elle pose une question plus simple :
+            quand le titre arrive déjà « choc », quel est votre premier filtre ? Cinq situations, quatre profils.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#quiz">Faire le quiz</a>
+            <a class="btn btn--ghost" href="#profils">Les quatre profils</a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <svg viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="40" width="280" height="200" rx="16" fill="#ffffff" stroke="#0f7a6c" stroke-width="2"/>
+            <path d="M70 88h140" stroke="#0f7a6c" stroke-width="10" stroke-linecap="round"/>
+            <path d="M70 118h200" stroke="#9bb0bf" stroke-width="8" stroke-linecap="round"/>
+            <path d="M70 148h170" stroke="#9bb0bf" stroke-width="8" stroke-linecap="round"/>
+            <path d="M70 178h120" stroke="#9bb0bf" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="268" cy="196" r="28" fill="#14202b"/>
+            <path d="M258 196l8 8 14-16" stroke="#9fd8cf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="110" y="252" width="140" height="14" rx="7" fill="#c9dce8"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profils">
+      <div class="wrap">
+        <p class="kicker">Quatre lectures</p>
+        <h2>Une déclaration, quatre façons de la recevoir</h2>
+        <p class="lead">
+          Ici on ne classe pas les gens en « naïfs » ou « malins ». On regarde juste le premier
+          mouvement : citation, formulation, pause, ou tri pratique.
+        </p>
+        <div class="profiles">
+          <article class="profile">
+            <p class="profile__n">01</p>
+            <h3>Traqueur de citation</h3>
+            <p>Vous voulez les mots exacts avant l'opinion.</p>
+            <p class="profile__tag">Force : goût du détail.</p>
+          </article>
+          <article class="profile">
+            <p class="profile__n">02</p>
+            <h3>Détecteur d'emphase</h3>
+            <p>« Tout le monde » et « choqué » vous mettent déjà en alerte.</p>
+            <p class="profile__tag">Force : oreille critique.</p>
+          </article>
+          <article class="profile">
+            <p class="profile__n">03</p>
+            <h3>Spectateur patient</h3>
+            <p>Vous laissez passer une vague avant de commenter.</p>
+            <p class="profile__tag">Force : sang-froid.</p>
+          </article>
+          <article class="profile">
+            <p class="profile__n">04</p>
+            <h3>Tri sélectif</h3>
+            <p>Si ça ne vous oblige à rien, le sujet perd vite sa place.</p>
+            <p class="profile__tag">Force : focus.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quiz" id="quiz">
+      <div class="quiz__panel">
+        <div class="quiz__intro" id="quiz-intro">
+          <p class="kicker">5 questions · environ 2 minutes</p>
+          <h2>Testez votre filtre</h2>
+          <p class="lead">
+            Répondez comme vous le feriez vraiment, pas comme dans un débat de salon.
+          </p>
+          <button class="btn btn--ink" type="button" id="quiz-start">Démarrer</button>
+        </div>
+
+        <div class="quiz-card is-hidden" id="quiz-card">
+          <div class="quiz-progress"><div class="quiz-progress__bar" id="quiz-progress-bar"></div></div>
+          <div class="quiz-progress__label" id="quiz-progress-label">Question 1 sur 5</div>
+          <h3 id="quiz-question">—</h3>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-actions">
+            <button class="btn btn--line" type="button" id="quiz-prev">Précédent</button>
+            <button class="btn btn--solid" type="button" id="quiz-next">Suivant</button>
+          </div>
+        </div>
+
+        <div class="quiz-card is-hidden" id="quiz-result">
+          <div class="quiz-result">
+            <p class="quiz-result__eyebrow" id="result-eyebrow">Profil</p>
+            <h3 id="result-title">—</h3>
+            <p id="result-desc">—</p>
+            <div class="quiz-block">
+              <strong>Vos appuis</strong>
+              <span id="result-strengths">—</span>
+            </div>
+            <div class="quiz-block">
+              <strong>Pour la prochaine déclaration</strong>
+              <span id="result-tip">—</span>
+            </div>
+            <p class="quiz-note">
+              Divertissement uniquement. Aucune valeur médicale ou scientifique.
+              Nous ne présentons pas une déclaration réelle du jour : le quiz porte sur vos réflexes de lecture.
+            </p>
+            <button class="btn btn--solid" type="button" id="quiz-restart" style="margin-top:1.25rem">Refaire le quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint">
+      <div class="wrap wrap--narrow" style="text-align:center">
+        <p class="kicker">À propos</p>
+        <h2>Clair sur ce que vous trouvez ici</h2>
+        <p class="lead" style="margin:0.75rem auto 1.5rem">
+          Édité par Clouds Taking Shape ApS (Danemark). Site sans scripts publicitaires ni pixels
+          de suivi. Les textes d'annonce qui mènent ici parlent du même thème : comment on reçoit
+          une déclaration présentée comme « choc ».
+        </p>
+        <a class="btn btn--line" href="mentions-legales.html">Mentions légales</a>
+        <a class="btn btn--ink" href="contact.html" style="margin-left:0.5rem">Écrire</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-brand" data-cfg="company.name">Clouds Taking Shape ApS</p>
+        <p>
+          <span data-cfg="company.legalForm">ApS</span> · CVR <span data-cfg="company.cvr">41405244</span><br>
+          <span data-cfg="company.address">Nydamsvej 17, 8362 Hørning, Denmark</span><br>
+          <a href="tel:+451025888908" data-cfg="company.phone" data-cfg-type="href">+45 10 25 88 89 08</a><br>
+          <a href="mailto:helle@cloudstakingshape.com" data-cfg="company.email" data-cfg-type="href">helle@cloudstakingshape.com</a>
+        </p>
+      </div>
+      <div>
+        <h4>Pages légales</h4>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="politique-confidentialite.html">Confidentialité</a></li>
+          <li><a href="politique-cookies.html">Cookies</a></li>
+          <li><a href="conditions.html">Conditions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sur le site</h4>
+        <ul>
+          <li><a href="index.html">Quiz « hier soir »</a></li>
+          <li><a href="declaration.html">Quiz « déclaration »</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span id="current-year">2026</span> <span data-cfg="company.name">Clouds Taking Shape ApS</span></span>
+      <span>Contenu ludique — voir les <a href="conditions.html">conditions</a>.</span>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Information cookies">
+    <p>
+      Uniquement un stockage local pour mémoriser que vous avez vu ce message. Pas de cookies publicitaires.
+      <a href="politique-cookies.html">Détails</a>
+    </p>
+    <button class="btn btn--solid" type="button" id="cookie-accept">Compris</button>
+  </div>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/quiz-declaration.js" defer></script>
+  <script src="js/quiz.js" defer></script>
+</body>
+</html>
