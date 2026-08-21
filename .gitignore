@@ -2,3 +2,5 @@
 *.log
 .vscode/
 .idea/
+# ChatGPT WIP — do not publish yet
+test_3/
