@@ -68,7 +68,7 @@ var PROFILES = {
   },
   tempo: {
     title: "Le Pauseur",
-    lead: "Vous savez que l’intensité du moment n’est pas toujours celle de l’événement. Vous laissez retomber la poussière avant de trancher.",
+    lead: "Vous savez que l’intensité du moment n’est pas celle de l’événement. Vous laissez retomber la poussière avant de trancher.",
     force: "Éviter la contagion émotionnelle et garder un jugement stable.",
     watch: "Attendre protège, mais certaines situations demandent tout de même une réaction rapide."
   },
@@ -82,12 +82,17 @@ var PROFILES = {
 
 var step = 0;
 var picks = [];
+var lastProfileKey = "";
 
 var elBar = document.querySelector("[data-wz-bar]");
 var elLabel = document.querySelector("[data-step-label]");
 var elQuiz = document.querySelector("[data-quiz]");
 var elResult = document.querySelector("[data-result]");
 var elBack = document.querySelector("[data-back]");
+var leadForm = document.getElementById("leadForm");
+var leadStatus = document.getElementById("leadStatus");
+var leadSubmit = document.getElementById("leadSubmit");
+var leadProfile = document.getElementById("leadProfile");
 
 function render() {
   if (!elQuiz) return;
@@ -162,13 +167,21 @@ function finish() {
     }
   });
 
+  lastProfileKey = winner;
   var p = PROFILES[winner];
   document.getElementById("resTitle").textContent = p.title;
   document.getElementById("resLead").textContent = p.lead;
   document.getElementById("resForce").textContent = p.force;
   document.getElementById("resWatch").textContent = p.watch;
+  if (leadProfile) leadProfile.value = p.title;
+  if (leadForm) {
+    leadForm.reset();
+    if (leadProfile) leadProfile.value = p.title;
+  }
+  if (leadStatus) leadStatus.textContent = "";
+  if (leadSubmit) leadSubmit.disabled = false;
 
-    elLabel.textContent = "Profil";
+  elLabel.textContent = "Profil";
   elBar.style.width = "100%";
   elQuiz.hidden = true;
   elResult.classList.add("is-show");
@@ -199,9 +212,70 @@ if (restart) {
   restart.addEventListener("click", function () {
     step = 0;
     picks = [];
+    lastProfileKey = "";
     elResult.classList.remove("is-show");
     elQuiz.hidden = false;
     render();
+  });
+}
+
+if (leadForm) {
+  leadForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (!leadForm.checkValidity()) {
+      leadForm.reportValidity();
+      return;
+    }
+
+    var data = new FormData(leadForm);
+    if (leadProfile && !data.get("profile")) {
+      data.set("profile", leadProfile.value || lastProfileKey);
+    }
+
+    leadSubmit.disabled = true;
+    leadStatus.textContent = "Envoi en cours…";
+
+    fetch("send.php", {
+      method: "POST",
+      body: data,
+      headers: { Accept: "application/json" }
+    })
+      .then(function (res) {
+        return res.json().then(function (json) {
+          return { ok: res.ok, json: json };
+        });
+      })
+      .then(function (out) {
+        if (out.ok && out.json && out.json.ok) {
+          leadStatus.textContent = "Merci. Votre demande a bien été envoyée. Nous vous recontactons rapidement.";
+          leadForm.querySelectorAll("input, button").forEach(function (el) {
+            if (el.type !== "hidden") el.disabled = true;
+          });
+          leadSubmit.disabled = true;
+          return;
+        }
+        throw new Error((out.json && out.json.error) || "send_failed");
+      })
+      .catch(function () {
+        leadSubmit.disabled = false;
+        leadStatus.textContent = "L’envoi automatique n’a pas abouti. Ouverture de votre messagerie…";
+        var name = String(data.get("name") || "").trim();
+        var email = String(data.get("email") || "").trim();
+        var phone = String(data.get("phone") || "").trim();
+        var profile = String(data.get("profile") || "").trim();
+        var body = [
+          "Demande Relais Lucide",
+          "Nom : " + name,
+          "E-mail : " + email,
+          "Téléphone : " + (phone || "—"),
+          "Profil : " + (profile || "—")
+        ].join("\n");
+        window.location.href =
+          "mailto:Matthias@bondeskovgaardaps.com?subject=" +
+          encodeURIComponent("Relais Lucide — " + (profile || "profil")) +
+          "&body=" +
+          encodeURIComponent(body);
+      });
   });
 }
 

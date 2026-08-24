@@ -5,7 +5,7 @@
   <base href="/test_5/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — Relais Lucide</title>
-  <meta name="description" content="Contacter l’éditeur de Relais Lucide.">
+  <meta name="description" content="Contacter Relais Lucide / Bondeskovgaard Cleaning ApS.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -16,24 +16,77 @@
     <a class="back" href="index.html">← Accueil</a>
     <h1>Contact</h1>
     <p>Bondeskovgaard Cleaning ApS<br>Hestehavevej 40, 4320 Lejre, Danemark<br><a href="mailto:Matthias@bondeskovgaardaps.com">Matthias@bondeskovgaardaps.com</a><br>+45 46 49 60 27</p>
-    <form class="form-grid" id="cform">
-      <label>Nom<input type="text" name="name" required autocomplete="name"></label>
-      <label>E-mail<input type="email" name="email" required autocomplete="email"></label>
-      <label>Message<textarea name="message" rows="5" required></textarea></label>
-      <p class="form-note">Le bouton ouvre votre messagerie. Rien n’est envoyé au site tant que vous n’avez pas validé l’e-mail.</p>
-      <button class="btn btn-main" type="submit">Préparer l’e-mail</button>
+
+    <h2>Formulaire</h2>
+    <form class="lead-form" id="contactForm" action="send.php" method="post" novalidate>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="lead-grid">
+        <label>Nom
+          <input type="text" name="name" maxlength="80" autocomplete="name" required>
+        </label>
+        <label>E-mail
+          <input type="email" name="email" maxlength="120" autocomplete="email" required>
+        </label>
+      </div>
+      <label>Objet
+        <input type="text" name="subject" maxlength="120" required>
+      </label>
+      <label>Message
+        <textarea name="message" rows="6" maxlength="2000" required></textarea>
+      </label>
+      <label class="check">
+        <input type="checkbox" name="consent" value="1" required>
+        <span>J’ai lu la <a href="privacy.html">politique de confidentialité</a>.</span>
+      </label>
+      <button class="btn btn-main" type="submit" id="contactSubmit">Envoyer</button>
+      <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
     </form>
-    <p id="cthanks" hidden style="color:var(--ok);font-weight:600;margin-top:1rem">Ouvrez votre client mail pour envoyer le message.</p>
   </main>
   <footer class="site-footer"><div class="footer-bottom">© 2026 Bondeskovgaard Cleaning ApS</div></footer>
   <script>
-    document.getElementById("cform").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var f = e.target;
-      var body = encodeURIComponent(f.message.value + "\n\n— " + f.name.value + " <" + f.email.value + ">");
-      window.location.href = "mailto:Matthias@bondeskovgaardaps.com?subject=" + encodeURIComponent("Contact Relais Lucide") + "&body=" + body;
-      document.getElementById("cthanks").hidden = false;
-    });
+    (function () {
+      var form = document.getElementById("contactForm");
+      var status = document.getElementById("contactStatus");
+      var submit = document.getElementById("contactSubmit");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        var data = new FormData(form);
+        submit.disabled = true;
+        status.textContent = "Envoi en cours…";
+        fetch("send.php", { method: "POST", body: data, headers: { Accept: "application/json" } })
+          .then(function (res) {
+            return res.json().then(function (json) { return { ok: res.ok, json: json }; });
+          })
+          .then(function (out) {
+            if (out.ok && out.json && out.json.ok) {
+              status.textContent = "Message envoyé. Merci.";
+              form.querySelectorAll("input, textarea, button").forEach(function (el) {
+                if (el.type !== "hidden") el.disabled = true;
+              });
+              return;
+            }
+            throw new Error("fail");
+          })
+          .catch(function () {
+            submit.disabled = false;
+            status.textContent = "Envoi serveur indisponible — ouverture de la messagerie…";
+            var body = [
+              "Nom : " + data.get("name"),
+              "E-mail : " + data.get("email"),
+              "",
+              data.get("message")
+            ].join("\n");
+            window.location.href = "mailto:Matthias@bondeskovgaardaps.com?subject=" +
+              encodeURIComponent(String(data.get("subject") || "Contact Relais Lucide")) +
+              "&body=" + encodeURIComponent(body);
+          });
+      });
+    })();
   </script>
 </body>
 </html>

@@ -103,7 +103,34 @@
             <div><span>Votre force</span><p id="resForce"></p></div>
             <div><span>À surveiller</span><p id="resWatch"></p></div>
           </div>
-          <button class="btn btn-main" type="button" data-restart>Reprendre le parcours</button>
+
+          <div class="lead-form-wrap" id="leadWrap">
+            <h4 class="lead-title">Recevoir votre synthèse complète</h4>
+            <p class="lead-sub">Indiquez vos coordonnées pour recevoir le détail de votre profil et des pistes de lecture adaptées. Sans engagement.</p>
+            <form class="lead-form" id="leadForm" action="send.php" method="post" novalidate>
+              <input type="hidden" name="profile" id="leadProfile" value="">
+              <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <div class="lead-grid">
+                <label>Prénom
+                  <input type="text" name="name" maxlength="80" autocomplete="given-name" required>
+                </label>
+                <label>E-mail
+                  <input type="email" name="email" maxlength="120" autocomplete="email" required>
+                </label>
+              </div>
+              <label>Téléphone <span class="opt">(facultatif)</span>
+                <input type="tel" name="phone" maxlength="40" autocomplete="tel">
+              </label>
+              <label class="check">
+                <input type="checkbox" name="consent" value="1" required>
+                <span>J’accepte que Relais Lucide / Bondeskovgaard Cleaning ApS utilise ces informations pour m’envoyer ma synthèse et me recontacter à ce sujet. Voir la <a href="privacy.html">confidentialité</a>.</span>
+              </label>
+              <button class="btn btn-main" type="submit" id="leadSubmit">Envoyer ma demande</button>
+              <p class="form-status" id="leadStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <button class="btn btn-ghost" type="button" data-restart style="margin-top:.85rem">Reprendre le parcours</button>
         </div>
 
         <div class="wz-nav">
