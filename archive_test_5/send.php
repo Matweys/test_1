@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Honeypot
 if (!empty($_POST['website'])) {
     echo json_encode(['ok' => true]);
     exit;
@@ -59,6 +58,7 @@ if ($isContact) {
         . "E-mail : {$email}\n"
         . "Téléphone : " . ($phone !== '' ? $phone : '—') . "\n\n"
         . $message . "\n";
+    $type = 'contact';
 } else {
     $subj = 'Relais Lucide — synthèse ' . ($profile !== '' ? $profile : 'profil');
     $body = "Demande de synthèse Relais Lucide\n\n"
@@ -69,10 +69,33 @@ if ($isContact) {
         . "Consentement : oui\n"
         . "Date : " . gmdate('c') . "\n"
         . "IP : " . ($_SERVER['REMOTE_ADDR'] ?? '') . "\n";
+    $type = 'lead';
 }
 
-$subj = str_replace(["\r", "\n"], '', $subj);
-$encodedSubject = '=?UTF-8?B?' . base64_encode($subj) . '?=';
+$entry = [
+    'ts' => gmdate('c'),
+    'type' => $type,
+    'name' => $name,
+    'email' => $email,
+    'phone' => $phone,
+    'profile' => $profile,
+    'subject' => $isContact ? $subj : $subj,
+    'message' => $isContact ? $message : '',
+    'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+];
+
+$dataDir = __DIR__ . '/data';
+if (!is_dir($dataDir) && !mkdir($dataDir, 0750, true)) {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'error' => 'storage']);
+    exit;
+}
+
+$line = json_encode($entry, JSON_UNESCAPED_UNICODE) . "\n";
+$stored = @file_put_contents($dataDir . '/leads.jsonl', $line, FILE_APPEND | LOCK_EX);
+
+$subjClean = str_replace(["\r", "\n"], '', $subj);
+$encodedSubject = '=?UTF-8?B?' . base64_encode($subjClean) . '?=';
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
@@ -80,13 +103,12 @@ $headers = [
     'From: Relais Lucide <noreply@bondeskovgaardaps.com>',
     'Reply-To: ' . $email,
 ];
+$mailed = @mail($to, $encodedSubject, $body, implode("\r\n", $headers));
 
-$sent = @mail($to, $encodedSubject, $body, implode("\r\n", $headers));
-
-if (!$sent) {
+if ($stored === false) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'mail']);
+    echo json_encode(['ok' => false, 'error' => 'storage']);
     exit;
 }
 
-echo json_encode(['ok' => true]);
+echo json_encode(['ok' => true, 'mail' => (bool)$mailed]);
