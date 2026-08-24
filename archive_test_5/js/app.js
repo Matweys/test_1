@@ -168,7 +168,7 @@ function finish() {
   document.getElementById("resForce").textContent = p.force;
   document.getElementById("resWatch").textContent = p.watch;
 
-  elLabel.textContent = "Résultat";
+    elLabel.textContent = "Profil";
   elBar.style.width = "100%";
   elQuiz.hidden = true;
   elResult.classList.add("is-show");
