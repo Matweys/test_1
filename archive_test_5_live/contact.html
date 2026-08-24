@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <base href="/test_5/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Relais Lucide</title>
+  <meta name="description" content="Contacter Relais Lucide / Bondeskovgaard Cleaning ApS.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="disclosure">Contenu promotionnel · Outil pédagogique gratuit · Édité par Bondeskovgaard Cleaning ApS</div>
+  <header class="masthead"><div class="row"><a class="brand" href="index.html"><span class="mark">R</span><span>Relais Lucide</span></a></div></header>
+  <main class="page">
+    <a class="back" href="index.html">← Accueil</a>
+    <h1>Contact</h1>
+    <p>Bondeskovgaard Cleaning ApS<br>Hestehavevej 40, 4320 Lejre, Danemark<br><a href="mailto:Matthias@bondeskovgaardaps.com">Matthias@bondeskovgaardaps.com</a><br>+45 46 49 60 27</p>
+
+    <h2>Formulaire</h2>
+    <form class="lead-form" id="contactForm" action="send.php" method="post" novalidate>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="lead-grid">
+        <label>Nom
+          <input type="text" name="name" maxlength="80" autocomplete="name" required>
+        </label>
+        <label>E-mail
+          <input type="email" name="email" maxlength="120" autocomplete="email" required>
+        </label>
+      </div>
+      <label>Objet
+        <input type="text" name="subject" maxlength="120" required>
+      </label>
+      <label>Message
+        <textarea name="message" rows="6" maxlength="2000" required></textarea>
+      </label>
+      <label class="check">
+        <input type="checkbox" name="consent" value="1" required>
+        <span>J’accepte que Bondeskovgaard Cleaning ApS traite mes données pour répondre à mon message. J’ai lu la <a href="privacy.html">confidentialité</a>, les <a href="cookies.html">cookies</a> et les <a href="terms.html">conditions</a>.</span>
+      </label>
+      <button class="btn btn-main" type="submit" id="contactSubmit">Envoyer</button>
+      <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <footer class="site-footer"><div class="footer-bottom">© 2026 Bondeskovgaard Cleaning ApS</div></footer>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>
